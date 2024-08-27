@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { marked } from 'marked';
+// import Prism from 'prismjs';
+// import 'prismjs/themes/prism.css';
 
-class Previewer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
 
-        }
-    }
+function Previewer({ markdown }) {
 
-    render() {
-        return (
-            <div className="panel">
-                <div className="panel-head">
-                    Previewer
-                </div>
-                <div id="preview"></div>
+    return (
+        <div className="panel">
+            <div className="panel-head">
+                Previewer
             </div>
-        )
-    }
+            <div id="preview" dangerouslySetInnerHTML={{ __html: marked(markdown) }}></div>
+        </div>
+    )
 }
 
 export default Previewer;

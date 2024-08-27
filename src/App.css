@@ -1,8 +1,8 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .App {
   text-align: center;
@@ -18,11 +18,14 @@
 .Panels {
   display: flex;
   height: calc(100vh - 100px);
+  overflow: hidden;
 }
 .panel {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 50%;
 }
 .panel-head {
   font-weight: bold;
@@ -43,13 +46,32 @@
   color: white;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  flex: 1;
   overflow: auto;
+  text-align: left;
+  flex: 1;
+}
+#preview a {
+  color: #61DAFB;
+}
+#preview pre {
+  display: block;
+  background-color: rgb(29, 29, 29);
+  padding: 0.5rem;
+  overflow: auto;
+}
+#preview code {
+  background-color: rgb(29, 29, 29);
+}
+#preview img {
+  max-width: 100%;
 }
 #resize-bar {
   width: 5px;
   background-color: cadetblue;
   cursor:col-resize;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 5px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
