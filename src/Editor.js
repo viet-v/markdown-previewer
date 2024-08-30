@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateMarkdown } from './redux-actions';
 
 
-function Editor({ onTextChange }) {
-    const [inputState, setInputState] = useState('`<div>some code</div>`');
+function Editor({ markdown, updateMarkdown }) {
+
+    const [inputState, setInputState] = useState('');
 
     const handleChange = (event) => {
-        onTextChange(event.target.value);
+        updateMarkdown(event.target.value);
         setInputState(event.target.value);
     }
 
@@ -14,9 +17,17 @@ function Editor({ onTextChange }) {
             <div className="panel-head">
                 Editor
             </div>
-            <textarea id="editor" onChange={handleChange} value={inputState}></textarea>
+            <textarea id="editor" onChange={handleChange} value={markdown}></textarea>
         </div>
     )
 }
 
-export default Editor;
+const mapStateToProps = (state) => ({
+    markdown: state.markdown
+})
+
+const mapDispatchToProps = {
+    updateMarkdown
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);
