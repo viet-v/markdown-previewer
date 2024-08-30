@@ -26,6 +26,7 @@
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 50%;
+  overflow: auto;
 }
 .panel-head {
   font-weight: bold;
@@ -34,7 +35,6 @@
   padding: 0.5rem 1rem;
 }
 #editor {
-  width: 100%;
   resize: vertical;
   border: 0;
 }
@@ -58,6 +58,7 @@
   background-color: rgb(29, 29, 29);
   padding: 0.5rem;
   overflow: auto;
+  white-space: pre-wrap;
 }
 #preview code {
   background-color: rgb(29, 29, 29);
@@ -86,5 +87,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Panels {
+    flex-direction: column;
   }
 }
