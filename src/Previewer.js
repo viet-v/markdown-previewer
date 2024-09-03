@@ -1,14 +1,19 @@
 import React from 'react';
 import { marked } from 'marked';
 import { connect } from 'react-redux';
+import DOMPurify from 'dompurify';
 // import Prism from 'prismjs';
 // import 'prismjs/themes/prism.css';
 
 
 function Previewer({ markdown }) {
 
+    const rawInput = marked(markdown);
+    const cleanInput = DOMPurify.sanitize(rawInput);
+
     const renderMarkdown = () => {
-        return { __html: marked(markdown) }
+        console.log('DOMPurify: ' + DOMPurify.removed);
+        return { __html: cleanInput }
     }
     return (
         <div className="panel">
