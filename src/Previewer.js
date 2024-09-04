@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { marked } from 'marked';
 import { connect } from 'react-redux';
 import DOMPurify from 'dompurify';
@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify';
 // import 'prismjs/themes/prism.css';
 
 
-function Previewer({ markdown }) {
+function Previewer({ markdown }, ref) {
 
     const rawInput = marked(markdown);
     const cleanInput = DOMPurify.sanitize(rawInput);
@@ -16,7 +16,7 @@ function Previewer({ markdown }) {
         return { __html: cleanInput }
     }
     return (
-        <div className="panel">
+        <div ref={ref} className="panel">
             <div className="panel-head">
                 Previewer
             </div>
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => ({
     markdown: state.markdown
 });
 
-export default connect(mapStateToProps)(Previewer);
+export default connect(mapStateToProps, null, null, { forwardRef: true })(forwardRef(Previewer));
