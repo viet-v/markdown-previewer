@@ -10,9 +10,9 @@ import './App.css';
 function App() {
   const [markdown, setMarkdown] = useState('');
 
-  const updateMarkdown = (newText) => {
-    setMarkdown(newText)
-  }
+  // const updateMarkdown = (newText) => {
+  //   setMarkdown(newText)
+  // }
 
   const [isResizing, setIsResizing] = useState(false);
   const leftPanelRef = useRef(null);
@@ -23,9 +23,10 @@ function App() {
 
     const handleMouseMove = (e) => {
       if (!isResizing) return;
+
       const newLeftWidth = e.clientX - resizeBarRef.current.offsetWidth / 2;
       const newRightWidth = window.innerWidth - newLeftWidth - 5;
-
+      
       if (leftPanelRef.current) {
         leftPanelRef.current.style.flex = `0 0 ${newLeftWidth}px`;
         resizeBarRef.current.style.flex = `0 0 5px`;

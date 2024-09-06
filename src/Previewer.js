@@ -1,9 +1,11 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { marked } from 'marked';
 import { connect } from 'react-redux';
 import DOMPurify from 'dompurify';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/a11y-dark.css';
 // import Prism from 'prismjs';
-// import 'prismjs/themes/prism.css';
+// import 'prismjs/themes/prism-tomorrow.min.css';
 
 
 function Previewer({ markdown }, ref) {
@@ -14,7 +16,14 @@ function Previewer({ markdown }, ref) {
     const renderMarkdown = () => {
         console.log('DOMPurify: ' + DOMPurify.removed);
         return { __html: cleanInput }
-    }
+    };
+
+    useEffect(() => {
+        document.querySelectorAll("code").forEach(code => {
+            hljs.highlightElement(code);
+        })
+    }, [markdown]);
+
     return (
         <div ref={ref} className="panel">
             <div className="panel-head">
